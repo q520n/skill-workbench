@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>技能工作台 · Skill Workbench</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></div>
+      <div class="brand-text"><h1>技能工作台</h1><span>Skill Workbench</span></div>
+    </div>
+
+    <div class="topbar-center">
+      <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="searchInput" type="search" placeholder="搜索技能名称、说明、触发词…" autocomplete="off"><kbd>/</kbd></div>
+    </div>
+
+    <div class="topbar-actions">
+      <button class="view-btn" id="btnFiles" title="查看技能产出的结果文件">📁 结果文件</button>
+      <div id="agentBadge" class="badge badge-off"><span class="dot"></span><span id="agentBadgeText">连接中…</span></div>
+      <button class="icon-btn" id="btnHelp" title="使用说明"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.6 2.2c-.8.4-1.1 1-1.1 1.8"/><path d="M12 17h.01"/></svg></button>
+      <button class="icon-btn" id="btnSettings" title="工作台设置"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1 1.56V21a2 2 0 0 1-4 0v-.09a1.7 1.7 0 0 0-1.1-1.55 1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.88l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.56V3a2 2 0 0 1 4 0v.09a1.7 1.7 0 0 0 1 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.01a1.7 1.7 0 0 0 1.56 1H21a2 2 0 0 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1Z"/></svg></button>
+      <button class="icon-btn" id="btnRefresh" title="刷新"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L3 9"/><path d="M4 13a8 8 0 0 0 14.3 4.9L21 15"/><path d="M3 4v5h5"/><path d="M21 20v-5h-5"/></svg></button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="side-label">技能分组</div>
+      <nav id="groupNav" class="group-nav"></nav>
+      <div class="side-divider"></div>
+      <div class="side-label row-between"><span>运行中</span><span id="runningCount" class="mini-count">0</span></div>
+      <div id="runningList" class="running-list"><div class="side-empty">暂无运行中的任务</div></div>
+      <div class="side-divider"></div>
+      <div class="side-label row-between"><span>最近运行</span><button id="btnAllHistory" class="link-btn">全部</button></div>
+      <div id="historyList" class="history-list"><div class="side-empty">还没有运行记录</div></div>
+      <div class="side-foot">
+        <div class="foot-title">执行端</div>
+        <div id="footAgent" class="foot-text">等待连接…</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="page-head">
+        <div><h2 id="pageTitle">全部技能</h2><p id="pageDesc">点击卡片上的「运行」按钮，即可把技能交给本机执行</p></div>
+        <div class="head-stats"><span id="statSkills">0</span> 个技能 · <span id="statEnabled">0</span> 个可用</div>
+      </div>
+      <div id="notice" class="notice hidden"></div>
+      <div id="skillGrid" class="grid"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div class="empty-ill">⌁</div><h3 id="emptyTitle">没有找到技能</h3><p id="emptyDesc">换个关键词试试，或确认执行端是否已连接</p>
+      </div>
+      <div id="filesView" class="files-view hidden">
+        <div class="files-toolbar">
+          <div id="filesCrumbs" class="files-crumbs"></div>
+          <div class="files-actions">
+            <button class="btn btn-ghost btn-sm" id="btnFilesRoot">根目录</button>
+            <button class="btn btn-ghost btn-sm" id="btnFilesRefresh">刷新</button>
+          </div>
+        </div>
+        <div id="filesList" class="files-list"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div id="drawerMask" class="mask hidden"></div>
+<aside id="runDrawer" class="drawer hidden" aria-label="运行详情">
+  <div class="drawer-head">
+    <div class="drawer-title"><span id="drawerEmoji" class="drawer-emoji">🧩</span><div><h3 id="drawerTitle">技能详情</h3><span id="drawerSub" class="drawer-sub"></span></div></div>
+    <button class="icon-btn" id="btnCloseDrawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="drawer-body">
+    <div id="paramArea" class="param-area"></div>
+    <div id="modelArea" class="model-area">
+      <label class="ro-label">运行模型</label>
+      <select id="modelSelect" class="model-select"></select>
+      <div class="field-hint">默认跟随全局设置；本次运行可临时切换。留空则使用全局默认（设置 → 常规设置里可改）。</div>
+    </div>
+    <div id="promptPreview" class="prompt-preview hidden"></div>
+    <div class="run-toolbar">
+      <button id="btnRun" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg><span>运行技能</span></button>
+      <button id="btnStop" class="btn btn-ghost hidden"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg><span>停止运行</span></button>
+      <span id="runStatus" class="run-status"></span>
+    </div>
+    <div class="log-head"><span>实时运行日志</span><div><button id="btnClearLog" class="link-btn">清空</button><span id="logCount" class="log-count">0 行</span></div></div>
+    <div id="logBox" class="log-box"><div class="log-placeholder">尚未开始运行。填写参数后点击「运行技能」。</div></div>
+  </div>
+</aside>
+
+<div id="modalRoot"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>

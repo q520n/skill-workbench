@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "agentToken": "513de9a163b32b8fab36b5dc4d676fe8",
+  "accessPassword": "",
+  "skills": {
+    "auto-oa-approval-resource": {
+      "title": "钉钉 OA 资源包自动审批",
+      "group": "办公自动化",
+      "emoji": "📋",
+      "order": 1,
+      "promptTemplate": "",
+      "enabled": true,
+      "params": [
+        {
+          "key": "补充要求",
+          "label": "补充要求",
+          "type": "text",
+          "placeholder": "例如：只处理今天的待办并出汇总",
+          "default": ""
+        }
+      ]
+    },
+    "batch-watermark-removal": {
+      "title": "批量图片去水印",
+      "group": "素材处理",
+      "emoji": "🧽",
+      "order": 2,
+      "promptTemplate": "",
+      "enabled": true,
+      "params": [
+        {
+          "key": "图片目录",
+          "label": "图片所在文件夹",
+          "type": "text",
+          "placeholder": "例如 D:\\待处理图片",
+          "default": ""
+        },
+        {
+          "key": "处理模式",
+          "label": "处理模式",
+          "type": "text",
+          "placeholder": "整图 / 局部 / 仅检测",
+          "default": ""
+        }
+      ]
+    },
+    "bazhuayu014__skillhub": {
+      "title": "JTBD 用户任务分析",
+      "group": "分析研究",
+      "emoji": "🎯",
+      "order": 3,
+      "promptTemplate": "",
+      "enabled": true,
+      "params": [
+        {
+          "key": "分析材料",
+          "label": "场景 / 用户反馈",
+          "type": "textarea",
+          "placeholder": "粘贴要分析的内容",
+          "default": ""
+        }
+      ]
+    },
+    "browser-automation-cdp": {
+      "title": "浏览器自动化采集",
+      "group": "数据采集",
+      "emoji": "🌐",
+      "order": 4,
+      "promptTemplate": "",
+      "enabled": true,
+      "params": [
+        {
+          "key": "目标网址",
+          "label": "目标网址",
+          "type": "text",
+          "placeholder": "https://…",
+          "default": ""
+        },
+        {
+          "key": "采集要求",
+          "label": "采集要求",
+          "type": "textarea",
+          "placeholder": "要抓取什么、要做什么操作",
+          "default": ""
+        }
+      ]
+    },
+    "company-ai-hub": {
+      "title": "公司 AI 能力目录",
+      "group": "通用工具",
+      "emoji": "🏠",
+      "order": 5,
+      "promptTemplate": "",
+      "enabled": true,
+      "params": [
+        {
+          "key": "补充要求",
+          "label": "想做什么",
+          "type": "text",
+          "placeholder": "描述你的需求，由目录路由到对应技能",
+          "default": ""
+        }
+      ]
+    },
+    "dingtalk-stream-file-bot": {
+      "title": "钉钉群文件检索机器人",
+      "group": "办公自动化",
+      "emoji": "🤖",
+      "order": 6,
+      "promptTemplate": "",
+      "enabled": true,
+      "params": [
+        {
+          "key": "关键词",
+          "label": "检索关键词",
+          "type": "text",
+          "placeholder": "例如：图书封面",
+          "default": ""
+        }
+      ]
+    }
+  },
+  "settings": {
+    "maxConcurrent": 2,
+    "runTimeoutMs": 900000
+  },
+  "defaultModel": ""
+}

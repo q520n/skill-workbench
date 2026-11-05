@@ -1,0 +1,16 @@
+{
+  "hubUrl": "http://127.0.0.1:7788",
+  "shareCode": "",
+  "agentToken": "513de9a163b32b8fab36b5dc4d676fe8",
+  "cliPath": "G:/workbuddy/2026-11-04-17-47-27/skill-workbench/local/cli/node_modules/@tencent-ai/codebuddy-code/bin/codebuddy",
+  "cliLiteBundle": false,
+  "skillsDirs": [
+    "C:/Users/Administrator/.workbuddy/skills",
+    "G:/workbuddy/2026-11-04-17-47-27/.workbuddy/skills"
+  ],
+  "workDir": "G:/workbuddy/2026-11-04-17-47-27",
+  "permissionMode": "bypassPermissions",
+  "pollIntervalMs": 1200,
+  "rescanIntervalMs": 30000,
+  "cliEnv": {}
+}

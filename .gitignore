@@ -1,0 +1,27 @@
+# ===== 大型二进制 / 依赖（绝不入库） =====
+local/cli/
+node_modules/
+**/node_modules/
+
+# ===== 机密文件（含真实 API Key，严禁上传） =====
+local/api-key.txt
+*.key
+*.pem
+*.pfx
+
+# ===== 工作产出 / 抓取结果数据（不属于工作台代码） =====
+wzdbook_infant_covers/
+
+# ===== 系统 & 临时文件 =====
+.workbuddy/
+.DS_Store
+Thumbs.db
+*.log
+_tmp*/
+_*.json
+_*.log
+_*.csv
+_*.html
+
+# ===== 运行时数据（非代码，clone 后会自动重建） =====
+hub/data/history.json

@@ -1,0 +1,12 @@
+{
+  "name": "skill-workbench-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Team skill workbench - cloud hub (single port HTTP service)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
